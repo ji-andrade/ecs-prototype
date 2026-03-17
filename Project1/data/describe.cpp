@@ -38,11 +38,27 @@ std::string describeDisposition(const World& world, ID id)
     return desc;
 }
 
+std::string describeStatus(const World& world, ID id)
+{
+    std::string desc;
+
+    desc += "He is " + toString(world.healthMap.at(id).curr) + ". ";
+    desc += toString(world.sicknessMap.at(id).curr) + ". ";
+    desc += toString(world.woundMap.at(id).curr) + ". ";
+    desc += "He is " + toString(world.moraleMap.at(id).curr) + ". ";
+    desc += "He is " + toString(world.hungerMap.at(id).curr) + ", ";
+    desc += toString(world.thirstMap.at(id).curr) + ", ";
+    desc += "and " + toString(world.fatigueMap.at(id).curr) + ".";
+
+    return desc;
+}
+
 std::string describePerson(const World& world, ID id)
 {
     std::string desc;
     desc += describePhysical(world, id) + "\n";
     desc += describePersonality(world, id) + "\n";
-    desc += describeDisposition(world, id) + "\n";
+    desc += describeDisposition(world, id) + "\n\n";
+    desc += describeStatus(world, id) + "\n";
     return desc;
 }

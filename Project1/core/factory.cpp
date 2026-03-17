@@ -26,5 +26,13 @@ void makePerson(World& world, int numberPersons)
 		world.hobbyMap[id] = { static_cast<Hobby>(randomInt(0, static_cast<int>(Hobby::Count) - 1)) };
 		world.fearMap[id] = { static_cast<Fear>     (randomInt(0, static_cast<int>(Fear::Count) - 1)) };
 		world.desireMap[id] = { static_cast<Desire>      (randomInt(0, static_cast<int>(Desire::Count) - 1)) };
+		//Temporary status
+		world.healthMap[id] = { Health::Healthy };
+		world.sicknessMap[id] = { Sickness::None };
+		world.woundMap[id] = { Wound::None };
+		world.moraleMap[id] = { Morale::Steady };
+		world.hungerMap[id] = { Hunger::Fed };
+		world.thirstMap[id] = { Thirst::Quenched };
+		world.fatigueMap[id] = { Fatigue::Rested };
 	}
 }

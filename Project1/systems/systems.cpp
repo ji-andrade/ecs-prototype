@@ -15,7 +15,7 @@ void printPerson(const World& world, int input)
 void printGeneral(const World& world)
 {
     system("cls");
-    std::cout << "Number of persons: " << world.nameMap.size() << "\n";
+    std::cout << "Type a number for the person you wish to see" << "\n";
     for (auto& [id, name] : world.nameMap)
         std::cout << id << " " << world.nameMap.at(id).val << " \n";
 }
@@ -23,7 +23,6 @@ void printGeneral(const World& world)
 int playerInput()
 {
     int input{};
-    std::cout << "\nWhich person do you wish to see?\n";
     std::cin >> input;
     system("cls");
     return input;

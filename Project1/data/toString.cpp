@@ -11,7 +11,7 @@ std::string toString(Physic v)
     default:             return "unknown";
     }
 }
-//he has
+
 std::string toString(Eyes v)
 {
     switch (v)
@@ -38,9 +38,9 @@ std::string toString(Hair v)
 {
     switch (v)
     {
-    case Hair::Bald:   return "a bare scalp, shaved or long since surrendered";
-    case Hair::Short:  return "short cropped hair, practical and unadorned";
-    case Hair::Matted: return "matted hair, knotted and unwashed";
+    case Hair::Bald:   return "A bare scalp, shaved or long since surrendered";
+    case Hair::Short:  return "Short cropped hair, practical and unadorned";
+    case Hair::Matted: return "Matted hair, knotted and unwashed";
     default:           return "unknown";
     }
 }
@@ -77,6 +77,7 @@ std::string toString(Brow v)
     default:             return "unknown";
     }
 }
+
 //Job enum to string
 std::string toString(Job v)
 {
@@ -89,16 +90,17 @@ std::string toString(Job v)
     default:             return "unknown";
     }
 }
+
 //Personality enums to string
 std::string toString(Temperament v)
 {
     switch (v)
     {
-    case Temperament::Calm:       return "calm, rarely rattled by what life throws at him";
-    case Temperament::Irritable:  return "quick to irritation, with a short fuse and a long memory";
+    case Temperament::Calm:        return "calm, rarely rattled by what life throws at him";
+    case Temperament::Irritable:   return "quick to irritation, with a short fuse and a long memory";
     case Temperament::Melancholic: return "melancholic, given to long silences and dark moods";
-    case Temperament::Cheerful:   return "cheerful without obvious cause, as if privy to some private joke";
-    default:                      return "unknown";
+    case Temperament::Cheerful:    return "cheerful without obvious cause, as if privy to some private joke";
+    default:                       return "unknown";
     }
 }
 
@@ -137,7 +139,9 @@ std::string toString(Bearing v)
     default:                  return "unknown";
     }
 }
-//Dispoition enums to string
+
+//Disposition enums to string
+
 std::string toString(Hobby v)
 {
     switch (v)
@@ -174,5 +178,85 @@ std::string toString(Desire v)
     case Desire::Freedom:   return "wants no master, no schedule, no walls he did not choose";
     case Desire::Survival:  return "asks only to live to see the next day, and the one after";
     default:                return "unknown";
+    }
+}
+
+//Status enum to string
+std::string toString(Health v)
+{
+    switch (v)
+    {
+    case Health::Healthy:  return "in good health, nothing to complain about";
+    case Health::Wounded:  return "carrying a wound that has not yet healed";
+    case Health::Dying:    return "fading, the life going out of him slowly";
+    default:               return "unknown";
+    }
+}
+
+std::string toString(Sickness v)
+{
+    switch (v)
+    {
+    case Sickness::None:       return "Free of sickness";
+    case Sickness::Feverish:   return "Burning with fever, his eyes glassy and distant";
+    case Sickness::Scurvy:     return "Riddled with scurvy, his gums black and his joints screaming";
+    case Sickness::Dysentery:  return "Hollowed out by dysentery, too weak to stand for long";
+    default:                   return "unknown";
+    }
+}
+
+std::string toString(Wound v)
+{
+    switch (v)
+    {
+    case Wound::None:    return "Unwounded";
+    case Wound::Light:   return "Nursing a light wound, more inconvenience than danger";
+    case Wound::Severe:  return "Badly wounded, every movement a reminder of it";
+    default:             return "unknown";
+    }
+}
+
+std::string toString(Morale v)
+{
+    switch (v)
+    {
+    case Morale::Steady:    return "steady in his bearing, neither hopeful nor desperate";
+    case Morale::Anxious:   return "anxious, scanning the horizon for something he cannot name";
+    case Morale::Broken:    return "broken in spirit, going through the motions without belief";
+    case Morale::Inspired:  return "lifted by something, moving with purpose and rare conviction";
+    default:                return "unknown";
+    }
+}
+
+std::string toString(Hunger v)
+{
+    switch (v)
+    {
+    case Hunger::Fed:      return "well fed, no complaint on that count";
+    case Hunger::Hungry:   return "hungry, his stomach making its feelings known";
+    case Hunger::Starving: return "starving, the hunger past pain and into something quieter";
+    default:               return "unknown";
+    }
+}
+
+std::string toString(Thirst v)
+{
+    switch (v)
+    {
+    case Thirst::Quenched: return "his thirst satisfied for now";
+    case Thirst::Thirsty:  return "thirsty, his mouth dry and his temper shorter for it";
+    case Thirst::Parched:  return "parched, his lips cracked and his thoughts narrowing to water";
+    default:               return "unknown";
+    }
+}
+
+std::string toString(Fatigue v)
+{
+    switch (v)
+    {
+    case Fatigue::Rested:    return "rested, with something left in reserve";
+    case Fatigue::Tired:     return "tired, the kind that sits behind the eyes";
+    case Fatigue::Exhausted: return "exhausted, running on will alone";
+    default:                 return "unknown";
     }
 }

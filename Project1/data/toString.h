@@ -2,7 +2,7 @@
 #include "../systems/systems.h"
 #include <string>
 
-//Physical enum to string
+//Physical 
 std::string toString(Physic v);
 std::string toString(Eyes v);
 std::string toString(Nose v);
@@ -10,14 +10,22 @@ std::string toString(Hair v);
 std::string toString(Jaw v);
 std::string toString(Skin v);
 std::string toString(Brow v);
-//Job enum to string
+//Job 
 std::string toString(Job v);
-//Personality enums to string
+//Personality 
 std::string toString(Temperament v);
 std::string toString(Social v);
 std::string toString(Drive v);
 std::string toString(Bearing v);
-//Dispoition enums to string
+//Disposition 
 std::string toString(Hobby v);
 std::string toString(Fear v);
 std::string toString(Desire v);
+//Status 
+std::string toString(Health v);
+std::string toString(Sickness v);
+std::string toString(Wound v);
+std::string toString(Morale v);
+std::string toString(Hunger v);
+std::string toString(Thirst v);
+std::string toString(Fatigue v);
