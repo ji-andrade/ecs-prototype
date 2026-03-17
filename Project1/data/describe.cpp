@@ -8,6 +8,8 @@ std::string describePhysical(const World& world, ID id)
     desc += toString(world.jobMap.at(id).curr) + ".\n";
     desc += toString(world.physicalMap.at(id).build) + ", ";
     desc += toString(world.jawMap.at(id).shape) + ".\n";
+    desc += "His mouth reveals " + toString(world.teethMap.at(id).cond) + ".";
+    desc += " Currently has " + std::to_string(world.teethMap.at(id).num) + " teeth.\n";
     desc += "He has " + toString(world.eyesMap.at(id).shape) + ", ";
     desc += toString(world.noseMap.at(id).shape) + ".\n";
     desc += toString(world.hairMap.at(id).style) + ".\n";

@@ -77,16 +77,32 @@ std::string toString(Brow v)
     default:             return "unknown";
     }
 }
+std::string toString(Teeth v)
+{
+    switch (v)
+    {
+    case Teeth::Good:    return "teeth that are straight and mostly sound";
+    case Teeth::Worn:    return "teeth worn and yellowed, the mouth of a man who has lived roughly";
+    case Teeth::Rotting: return "teeth black at the root, the breath foul and the gums receding";
+    default:             return "unknown";
+    }
+}
 
 //Job enum to string
 std::string toString(Job v)
 {
     switch (v)
     {
-    case Job::Barber:    return "Barber";
     case Job::Doctor:    return "Doctor";
     case Job::Carpenter: return "Carpenter";
-    case Job::Teacher:   return "Teacher";
+    case Job::Barber:    return "Barber";
+    case Job::Cook:      return "Cook";
+    case Job::Sailor:    return "Sailor";
+    case Job::Navigator: return "Navigator";
+    case Job::Gunner:    return "Gunner";
+    case Job::Priest:    return "Priest";
+    case Job::Merchant:  return "Merchant";
+    case Job::Soldier:   return "Soldier";
     default:             return "unknown";
     }
 }
@@ -189,7 +205,7 @@ std::string toString(Health v)
     switch (v)
     {
     case Health::Healthy:  return "in good health, nothing to complain about";
-    case Health::Wounded:  return "weakened, his body struggling to keep pace";
+    case Health::Ailing:  return "weakened, his body struggling to keep pace";
     case Health::Dying:    return "fading, the life going out of him slowly";
     default:               return "unknown";
     }

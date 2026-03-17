@@ -29,6 +29,7 @@ int playerInput()
     return input;
 }
 
+//start here
 void systemTime(World& world)
 {
     world.currDay++;
@@ -97,7 +98,8 @@ void systemHealth(World& world)
     for (auto& [id, health] : world.healthMap)
     {
         bool canDegrade = health.curr != Health::Dying;
-
+        bool canImprove = health.curr != Health::Healthy;
+        //thirst and hunger
         if (world.thirstMap.at(id).curr == Thirst::Parched &&
             world.hungerMap.at(id).curr == Hunger::Starving &&
             canDegrade)
@@ -105,12 +107,14 @@ void systemHealth(World& world)
             health.curr = static_cast<Health>(static_cast<int>(health.curr) + 1);
             world.sicknessMap[id].curr = Sickness::Wasting;
         }
+        //hunger only
         else if (world.hungerMap.at(id).curr == Hunger::Starving && 
             canDegrade && randomInt(0, 3) == 0)
         {
             health.curr = static_cast<Health>(static_cast<int>(health.curr) + 1);
             world.sicknessMap[id].curr = Sickness::Malnourished;
         }
+        //thirst only
         else if (world.thirstMap.at(id).curr == Thirst::Parched && 
             canDegrade && randomInt(0, 3) == 0)
         {
@@ -118,53 +122,93 @@ void systemHealth(World& world)
             world.sicknessMap[id].curr = Sickness::Dehydrated;
 
         }      
+        //fatigue only
         else if (world.fatigueMap.at(id).curr == Fatigue::Exhausted && 
             canDegrade && randomInt(0, 5) == 0)
         {
             health.curr = static_cast<Health>(static_cast<int>(health.curr) + 1);
             world.sicknessMap[id].curr = Sickness::Delirious;
         }
-    }
 
-    //improve health
-    for (auto& [id, health] : world.healthMap)
-    {
-        bool canImprove = health.curr != Health::Healthy;
-
-        if (world.thirstMap.at(id).curr == Thirst::Quenched &&
+        //recovery 
+        
+        //thirst and hunger
+        else if (world.thirstMap.at(id).curr == Thirst::Quenched &&
             world.hungerMap.at(id).curr == Hunger::Fed &&
             canImprove && randomInt(0, 9) == 0)
         {
             health.curr = static_cast<Health>(static_cast<int>(health.curr) - 1);
             world.sicknessMap[id].curr = Sickness::None;
         }
-        else if (world.hungerMap.at(id).curr == Hunger::Fed && 
+        //hunger only
+        else if (world.hungerMap.at(id).curr == Hunger::Fed &&
             canImprove && randomInt(0, 9) == 0)
         {
             health.curr = static_cast<Health>(static_cast<int>(health.curr) - 1);
-            if (world.sicknessMap[id].curr == Sickness::Malnourished)
+            if (world.sicknessMap.at(id).curr == Sickness::Wasting)
+            {
+                world.sicknessMap[id].curr = Sickness::Dehydrated;
+            }
+            else if (world.sicknessMap.at(id).curr == Sickness::Malnourished)
             {
                 world.sicknessMap[id].curr = Sickness::None;
             }
 
         }
-        else if (world.thirstMap.at(id).curr == Thirst::Quenched && 
+        //thirst only
+        else if (world.thirstMap.at(id).curr == Thirst::Quenched &&
             canImprove && randomInt(0, 9) == 0)
         {
             health.curr = static_cast<Health>(static_cast<int>(health.curr) - 1);
-            if (world.sicknessMap[id].curr == Sickness::Dehydrated)
+            if (world.sicknessMap.at(id).curr == Sickness::Wasting)
+            {
+                world.sicknessMap[id].curr = Sickness::Malnourished;
+            }
+            else if (world.sicknessMap.at(id).curr == Sickness::Dehydrated)
             {
                 world.sicknessMap[id].curr = Sickness::None;
             }
         }
-        else if (world.fatigueMap.at(id).curr == Fatigue::Rested && 
+        //fatigue only
+        else if (world.fatigueMap.at(id).curr == Fatigue::Rested &&
             canImprove && randomInt(0, 18) == 0)
         {
             health.curr = static_cast<Health>(static_cast<int>(health.curr) - 1);
-            if (world.sicknessMap[id].curr == Sickness::Delirious)
+            if (world.sicknessMap.at(id).curr == Sickness::Delirious)
             {
                 world.sicknessMap[id].curr = Sickness::None;
             }
         }
     }
+}
+
+void systemMorale(World& world)
+{
+    for (auto& [id, morale] : world.moraleMap)
+    {
+        if (world.healthMap.at(id).curr == Health::Healthy)
+        {
+            morale.curr = Morale::Steady;
+        }
+        else if (world.healthMap.at(id).curr == Health::Ailing)
+        {
+            morale.curr = Morale::Anxious;
+            if (world.sicknessMap.at(id).curr != Sickness::None &&
+                static_cast<int>(world.healthMap.at(id).curr) >= 1)
+            {
+                morale.curr = Morale::Broken;
+            }
+        }
+        else if (world.healthMap.at(id).curr == Health::Dying)
+        {
+            morale.curr = Morale::Broken;
+        }
+    }
+}
+
+//for funsies
+
+void systemScurvy(World& world)
+{
+
 }

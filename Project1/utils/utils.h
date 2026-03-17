@@ -5,7 +5,7 @@
 
 inline int randomInt(int min, int max)
 {
-	std::mt19937 mt{ std::random_device{}() };
+	static std::mt19937 mt{ std::random_device{}() };
 	std::uniform_int_distribution dis(min, max);
 	return dis(mt);
 }

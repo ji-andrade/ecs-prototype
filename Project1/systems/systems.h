@@ -15,3 +15,4 @@ void systemHunger(World& world);
 void systemThirst(World& world);
 void systemFatigue(World& world);
 void systemHealth(World& world);
+void systemMorale(World& world);

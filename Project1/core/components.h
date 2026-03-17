@@ -12,7 +12,10 @@ enum class Hair   { Bald, Short, Matted, Count };
 enum class Jaw    { Weak, Square, Heavy, Count };
 enum class Skin   { Pale, Tan, Weathered, Count };
 enum class Brow   { Thick, Furrowed, Arched, Count };
-enum class Job    { Doctor, Carpenter, Barber, Teacher, Count };
+enum class Teeth  { Good, Worn, Rotting, Count };
+
+//Job
+enum class Job    { Doctor, Carpenter, Barber, Cook, Sailor, Navigator, Gunner, Priest, Merchant, Soldier, Count };
 
 //Enum Personality
 enum class Temperament { Calm, Irritable, Melancholic, Cheerful, Count };
@@ -26,7 +29,7 @@ enum class Fear   { Sea, Heights, Death, Poverty, Solitude, Count };
 enum class Desire { Wealth, Fame, Family, Freedom, Survival, Count };
 
 // Current status 
-enum class Health { Healthy, Wounded, Dying, Count };
+enum class Health { Healthy, Ailing, Dying, Count };
 enum class Sickness { None, Feverish, Scurvy, Dysentery, Malnourished, Dehydrated, Wasting, Delirious, Count };
 enum class Wound { None, Light, Severe, Count };
 enum class Morale { Steady, Anxious, Broken, Inspired, Count };
@@ -47,6 +50,7 @@ struct SJaw    { Jaw    shape; };
 struct SSkin   { Skin   tone;  };
 struct SBrow   { Brow   shape; };
 struct SJob    { Job    curr;  };
+struct STeeth  { Teeth  cond; int num; };
 
 //Structs for personality enums
 struct STemperament { Temperament curr; };

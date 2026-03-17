@@ -10,6 +10,7 @@ std::string toString(Hair v);
 std::string toString(Jaw v);
 std::string toString(Skin v);
 std::string toString(Brow v);
+std::string toString(Teeth v);
 //Job 
 std::string toString(Job v);
 //Personality 

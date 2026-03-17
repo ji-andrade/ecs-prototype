@@ -20,6 +20,7 @@ struct World {
 	std::unordered_map<ID, SSkin>        skinMap;
 	std::unordered_map<ID, SBrow>        browMap;
 	std::unordered_map<ID, SJob>         jobMap;
+	std::unordered_map<ID, STeeth>       teethMap;
 	//Personality 
 	std::unordered_map<ID, STemperament> temperamentMap;
 	std::unordered_map<ID, SSocial>      socialMap;

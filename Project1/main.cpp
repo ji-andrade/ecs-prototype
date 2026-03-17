@@ -17,5 +17,6 @@ int main()
 		systemThirst(world);
 		systemFatigue(world);
 		systemHealth(world);
+		systemMorale(world);
 	}
 }
