@@ -127,17 +127,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="core\factory.cpp" />
+    <ClCompile Include="data\describe.cpp" />
+    <ClCompile Include="data\toString.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="world.h" />
+    <ClCompile Include="systems\systems.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="components.h" />
-    <ClInclude Include="factory.h" />
-    <ClInclude Include="systems.h" />
-    <ClInclude Include="utils.h" />
+    <ClInclude Include="core\components.h" />
+    <ClInclude Include="core\factory.h" />
+    <ClInclude Include="core\world.h" />
+    <ClInclude Include="data\describe.h" />
+    <ClInclude Include="data\toString.h" />
+    <ClInclude Include="systems\systems.h" />
+    <ClInclude Include="utils\utils.h" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="names.txt" />
+    <Text Include="data\names.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,8 +1,6 @@
-#pragma once
-#include "factory.h"
-#include <iostream>
+#include "describe.h"
 
-inline std::string describePhysical(const World& world, ID id)
+std::string describePhysical(const World& world, ID id)
 {
     std::string desc;
 
@@ -17,7 +15,7 @@ inline std::string describePhysical(const World& world, ID id)
     return desc;
 }
 
-inline std::string describePersonality(const World& world, ID id)
+std::string describePersonality(const World& world, ID id)
 {
     std::string desc;
 
@@ -29,7 +27,7 @@ inline std::string describePersonality(const World& world, ID id)
     return desc;
 }
 
-inline std::string describeDisposition(const World& world, ID id)
+std::string describeDisposition(const World& world, ID id)
 {
     std::string desc;
 
@@ -40,39 +38,11 @@ inline std::string describeDisposition(const World& world, ID id)
     return desc;
 }
 
-inline std::string describePerson(const World& world, ID id)
+std::string describePerson(const World& world, ID id)
 {
     std::string desc;
     desc += describePhysical(world, id) + "\n";
     desc += describePersonality(world, id) + "\n";
     desc += describeDisposition(world, id) + "\n";
     return desc;
-}
-
-inline void printPerson(const World& world, int input)
-{
-    if (!world.nameMap.count(input))
-    {
-        std::cout << "No person with that ID.\n";
-        return;
-    }
-    std::cout << describePerson(world, input) << "\n";
-}
-
-//temporary
-inline void printGeneral(const World& world)
-{
-    system("cls");
-    std::cout << "Number of persons: " << world.nameMap.size() << "\n";
-    for (auto& [id, name] : world.nameMap)
-        std::cout << id << " " << world.nameMap.at(id).val << " \n";
-}
-
-inline int playerInput()
-{
-    int input{};
-    std::cout << "\nWhich person do you wish to see?\n";
-    std::cin >> input;
-    system("cls");
-    return input;
 }

@@ -5,38 +5,62 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    <Filter Include="Data">
+      <UniqueIdentifier>{fe6df11a-24e1-42d4-8fb4-65acfa29841b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="utils">
+      <UniqueIdentifier>{ddd2af89-6ddf-4ef6-8fda-1a2d46326c40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="systems">
+      <UniqueIdentifier>{e72811d5-d643-4e3b-b344-cbe879719919}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core">
+      <UniqueIdentifier>{6566dab5-d0fb-46bb-9c00-343f9c12f39d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="world.h">
-      <Filter>Header Files</Filter>
+    <ClCompile Include="core\factory.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="data\describe.cpp">
+      <Filter>Data</Filter>
+    </ClCompile>
+    <ClCompile Include="data\toString.cpp">
+      <Filter>Data</Filter>
+    </ClCompile>
+    <ClCompile Include="systems\systems.cpp">
+      <Filter>systems</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="components.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="core\world.h">
+      <Filter>core</Filter>
     </ClInclude>
-    <ClInclude Include="factory.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="core\components.h">
+      <Filter>core</Filter>
     </ClInclude>
-    <ClInclude Include="utils.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="core\factory.h">
+      <Filter>core</Filter>
     </ClInclude>
-    <ClInclude Include="systems.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="data\toString.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="data\describe.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="systems\systems.h">
+      <Filter>systems</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\utils.h">
+      <Filter>utils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="names.txt" />
+    <Text Include="data\names.txt">
+      <Filter>Data</Filter>
+    </Text>
   </ItemGroup>
 </Project>

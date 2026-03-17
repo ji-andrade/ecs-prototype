@@ -1,41 +1,18 @@
-#pragma once
-#include <random>
-#include <fstream>
-#include <string>
-
-inline int randomInt(int min, int max)
-{
-	std::mt19937 mt{ std::random_device{}() };
-	std::uniform_int_distribution dis(min, max);
-	return dis(mt);
-}
-
-inline std::string readFile(std::string filename)
-{
-	std::vector<std::string> lines;
-	std::string line;
-	std::ifstream myFile(filename);
-	while (getline(myFile, line))
-	{
-		lines.push_back(line);
-	}
-
-	return lines[randomInt(0, lines.size() - 1)];
-}
+#include "toString.h"
 
 //Physical enum to string
-inline std::string toString(Physic v)
+std::string toString(Physic v)
 {
-	switch (v)
-	{
-	case Physic::Lean: return    "Lean and sinewy, with little to spare on the bone";
-	case Physic::Average: return "Average build, neither remarkable nor wanting";
-	case Physic::Stocky: return  "Stocky and broad, carrying his weight close to the ground";
+    switch (v)
+    {
+    case Physic::Lean: return    "Lean and sinewy, with little to spare on the bone";
+    case Physic::Average: return "Average build, neither remarkable nor wanting";
+    case Physic::Stocky: return  "Stocky and broad, carrying his weight close to the ground";
     default:             return "unknown";
-	}
+    }
 }
 //he has
-inline std::string toString(Eyes v)
+std::string toString(Eyes v)
 {
     switch (v)
     {
@@ -46,7 +23,7 @@ inline std::string toString(Eyes v)
     }
 }
 
-inline std::string toString(Nose v)
+std::string toString(Nose v)
 {
     switch (v)
     {
@@ -57,7 +34,7 @@ inline std::string toString(Nose v)
     }
 }
 
-inline std::string toString(Hair v)
+std::string toString(Hair v)
 {
     switch (v)
     {
@@ -68,7 +45,7 @@ inline std::string toString(Hair v)
     }
 }
 
-inline std::string toString(Jaw v)
+std::string toString(Jaw v)
 {
     switch (v)
     {
@@ -79,7 +56,7 @@ inline std::string toString(Jaw v)
     }
 }
 
-inline std::string toString(Skin v)
+std::string toString(Skin v)
 {
     switch (v)
     {
@@ -90,7 +67,7 @@ inline std::string toString(Skin v)
     }
 }
 
-inline std::string toString(Brow v)
+std::string toString(Brow v)
 {
     switch (v)
     {
@@ -101,7 +78,7 @@ inline std::string toString(Brow v)
     }
 }
 //Job enum to string
-inline std::string toString(Job v)
+std::string toString(Job v)
 {
     switch (v)
     {
@@ -113,7 +90,7 @@ inline std::string toString(Job v)
     }
 }
 //Personality enums to string
-inline std::string toString(Temperament v)
+std::string toString(Temperament v)
 {
     switch (v)
     {
@@ -125,7 +102,7 @@ inline std::string toString(Temperament v)
     }
 }
 
-inline std::string toString(Social v)
+std::string toString(Social v)
 {
     switch (v)
     {
@@ -137,7 +114,7 @@ inline std::string toString(Social v)
     }
 }
 
-inline std::string toString(Drive v)
+std::string toString(Drive v)
 {
     switch (v)
     {
@@ -149,7 +126,7 @@ inline std::string toString(Drive v)
     }
 }
 
-inline std::string toString(Bearing v)
+std::string toString(Bearing v)
 {
     switch (v)
     {
@@ -160,8 +137,8 @@ inline std::string toString(Bearing v)
     default:                  return "unknown";
     }
 }
-//Disposition enums to string
-inline std::string toString(Hobby v)
+//Dispoition enums to string
+std::string toString(Hobby v)
 {
     switch (v)
     {
@@ -174,7 +151,7 @@ inline std::string toString(Hobby v)
     }
 }
 
-inline std::string toString(Fear v)
+std::string toString(Fear v)
 {
     switch (v)
     {
@@ -187,7 +164,7 @@ inline std::string toString(Fear v)
     }
 }
 
-inline std::string toString(Desire v)
+std::string toString(Desire v)
 {
     switch (v)
     {
