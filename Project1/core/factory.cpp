@@ -31,8 +31,8 @@ void makePerson(World& world, int numberPersons)
 		world.sicknessMap[id] = { Sickness::None };
 		world.woundMap[id] = { Wound::None };
 		world.moraleMap[id] = { Morale::Steady };
-		world.hungerMap[id] = { Hunger::Fed };
-		world.thirstMap[id] = { Thirst::Quenched };
-		world.fatigueMap[id] = { Fatigue::Rested };
+		world.hungerMap[id] = { Hunger::Fed , 0};
+		world.thirstMap[id] = { Thirst::Quenched, 0 };
+		world.fatigueMap[id] = { Fatigue::Rested, 0 };
 	}
 }

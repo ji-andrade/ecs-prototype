@@ -12,5 +12,10 @@ int main()
 		printGeneral(world);
 		printPerson(world, playerInput());
 		_getch();
+		systemTime(world);
+		systemHunger(world);
+		systemThirst(world);
+		systemFatigue(world);
+		systemHealth(world);
 	}
 }

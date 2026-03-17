@@ -6,6 +6,7 @@ struct World {
 
 	//id counter
 	ID nextID = 0;
+	int currDay = 1;
 
 	//Basic
 	std::unordered_map<ID, Name>         nameMap;

@@ -27,7 +27,7 @@ enum class Desire { Wealth, Fame, Family, Freedom, Survival, Count };
 
 // Current status 
 enum class Health { Healthy, Wounded, Dying, Count };
-enum class Sickness { None, Feverish, Scurvy, Dysentery, Count };
+enum class Sickness { None, Feverish, Scurvy, Dysentery, Malnourished, Dehydrated, Wasting, Delirious, Count };
 enum class Wound { None, Light, Severe, Count };
 enum class Morale { Steady, Anxious, Broken, Inspired, Count };
 enum class Hunger { Fed, Hungry, Starving, Count };
@@ -64,6 +64,7 @@ struct SHealth   { Health     curr; };
 struct SSickness { Sickness   curr; };
 struct SWound    { Wound      curr; };
 struct SMorale   { Morale     curr; };
-struct SHunger   { Hunger     curr; };
-struct SThirst   { Thirst     curr; };
-struct SFatigue  { Fatigue    curr; };
+struct SHunger   { Hunger     curr; int lastAte; };
+struct SThirst   { Thirst     curr; int lastDrink; };
+struct SFatigue  { Fatigue    curr; int lastSlept;
+};
