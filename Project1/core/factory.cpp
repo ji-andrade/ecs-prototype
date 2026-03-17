@@ -19,6 +19,8 @@ void makePerson(World& world, int numberPersons)
 		world.jobMap[id]         = { static_cast<Job>(randomInt(0, static_cast<int>(Job::Count) - 1)) };
 		world.teethMap[id].cond  = { static_cast<Teeth>(randomInt(0, static_cast<int>(Teeth::Count) - 2)) };
 		world.teethMap[id].num   = { randomInt(20, 28) };
+		//temporary lemon addiction scurvy 3000
+		world.teethMap[id].ateLemon = randomInt(0, 1);
 		//Assign random personality traits
 		world.temperamentMap[id] = { static_cast<Temperament>(randomInt(0, static_cast<int>(Temperament::Count) - 1)) };
 		world.socialMap[id]      = { static_cast<Social>     (randomInt(0, static_cast<int>(Social::Count) - 1)) };

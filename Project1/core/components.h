@@ -50,7 +50,7 @@ struct SJaw    { Jaw    shape; };
 struct SSkin   { Skin   tone;  };
 struct SBrow   { Brow   shape; };
 struct SJob    { Job    curr;  };
-struct STeeth  { Teeth  cond; int num; };
+struct STeeth { Teeth  cond; int num; bool ateLemon; };
 
 //Structs for personality enums
 struct STemperament { Temperament curr; };
@@ -65,7 +65,7 @@ struct SDesire { Desire     curr; };
 
 //Struct for status enum
 struct SHealth   { Health     curr; };
-struct SSickness { Sickness   curr; };
+struct SSickness { Sickness   curr; int start; };
 struct SWound    { Wound      curr; };
 struct SMorale   { Morale     curr; };
 struct SHunger   { Hunger     curr; int lastAte; };

@@ -206,9 +206,51 @@ void systemMorale(World& world)
     }
 }
 
-//for funsies
+//for funsies 
+// needs to have cure
 
 void systemScurvy(World& world)
 {
+    for (auto& [id, sickness] : world.sicknessMap)
+    {
+        if (world.teethMap.at(id).ateLemon == false && 
+            sickness.curr != Sickness::Scurvy)
+        {
+            sickness.curr = Sickness::Scurvy;
+            sickness.start = world.currDay;
+        }
+        else if (sickness.curr == Sickness::Scurvy)
+        {
+            //14 to 30 day
+            if (world.currDay - sickness.start > 14 && world.currDay - sickness.start <= 30)
+            {
+                if (randomInt(0, 14) == 0)
+                {
+                    world.fatigueMap[id].lastSlept = world.currDay - 4;
+                }
 
+                if (randomInt(0, 9) == 0 && world.healthMap.at(id).curr != Health::Dying)
+                {
+                    world.healthMap[id].curr = static_cast<Health>(static_cast<int>(world.healthMap.at(id).curr) + 1);
+                }
+            }
+            //after 30 days
+            if (world.currDay - sickness.start > 30)
+            {
+                if (randomInt(0, 9) == 0 && world.teethMap.at(id).num >= 0)
+                {
+                    world.teethMap[id].num--;
+                }
+                if (randomInt(0, 6) == 0)
+                {
+                    world.fatigueMap[id].lastSlept = world.currDay - 4;
+                }
+
+                if (randomInt(0, 5) == 0 && world.healthMap.at(id).curr != Health::Dying)
+                {
+                    world.healthMap[id].curr = static_cast<Health>(static_cast<int>(world.healthMap.at(id).curr) + 1);
+                }
+            }
+        }
+    }
 }
