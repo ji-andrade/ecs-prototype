@@ -23,7 +23,7 @@ inline std::string readFile(std::string filename)
 	return lines[randomInt(0, lines.size() - 1)];
 }
 
-//Enums to string
+//Physical enum to string
 inline std::string toString(Physic v)
 {
 	switch (v)
@@ -34,6 +34,7 @@ inline std::string toString(Physic v)
     default:             return "unknown";
 	}
 }
+//he has
 inline std::string toString(Eyes v)
 {
     switch (v)
@@ -99,7 +100,7 @@ inline std::string toString(Brow v)
     default:             return "unknown";
     }
 }
-
+//Job enum to string
 inline std::string toString(Job v)
 {
     switch (v)
@@ -111,12 +112,12 @@ inline std::string toString(Job v)
     default:             return "unknown";
     }
 }
-
+//Personality enums to string
 inline std::string toString(Temperament v)
 {
     switch (v)
     {
-    case Temperament::Calm:       return "calm by nature, rarely rattled by what life throws at him";
+    case Temperament::Calm:       return "calm, rarely rattled by what life throws at him";
     case Temperament::Irritable:  return "quick to irritation, with a short fuse and a long memory";
     case Temperament::Melancholic: return "melancholic, given to long silences and dark moods";
     case Temperament::Cheerful:   return "cheerful without obvious cause, as if privy to some private joke";
@@ -157,5 +158,44 @@ inline std::string toString(Bearing v)
     case Bearing::Humble:     return "humble to the point of self-effacement, quick to step aside";
     case Bearing::Arrogant:   return "arrogant in the quiet way, as if the world owes him something it has forgotten to pay";
     default:                  return "unknown";
+    }
+}
+//Disposition enums to string
+inline std::string toString(Hobby v)
+{
+    switch (v)
+    {
+    case Hobby::Fishing:   return "finds peace at the water's edge, rod in hand and mind elsewhere";
+    case Hobby::Gambling:  return "is drawn to the table, chasing the feeling more than the money";
+    case Hobby::Reading:   return "is rarely without a book, even if the light is poor";
+    case Hobby::Drinking:  return "drinks with purpose, like a man settling an old debt";
+    case Hobby::Fighting:  return "seeks out trouble the way other men seek out comfort";
+    default:               return "unknown";
+    }
+}
+
+inline std::string toString(Fear v)
+{
+    switch (v)
+    {
+    case Fear::Sea:      return "carries a quiet dread of the sea, though he rarely speaks of it";
+    case Fear::Heights:  return "keeps his eyes low and his feet flat, never trusting a high place";
+    case Fear::Death:    return "thinks of death more than most, and likes it less";
+    case Fear::Poverty:  return "has known want before and will do much to avoid knowing it again";
+    case Fear::Solitude: return "does not bear being alone well, filling silence however he can";
+    default:             return "unknown";
+    }
+}
+
+inline std::string toString(Desire v)
+{
+    switch (v)
+    {
+    case Desire::Wealth:    return "wants money the way some men want air";
+    case Desire::Fame:      return "hungers to be known, to have his name mean something";
+    case Desire::Family:    return "wants a home and people in it, simple as that";
+    case Desire::Freedom:   return "wants no master, no schedule, no walls he did not choose";
+    case Desire::Survival:  return "asks only to live to see the next day, and the one after";
+    default:                return "unknown";
     }
 }

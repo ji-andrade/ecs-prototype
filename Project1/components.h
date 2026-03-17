@@ -6,24 +6,30 @@ using ID = uint32_t;
 
 //Enum Physical
 enum class Physic { Lean, Average, Stocky, Count };
-enum class Eyes { Narrow, Wide, Piercing, Count };
-enum class Nose { Flat, Hooked, Bulbous, Count };
-enum class Hair { Bald, Short, Matted, Count };
-enum class Jaw { Weak, Square, Heavy, Count };
-enum class Skin { Pale, Tan, Weathered, Count };
-enum class Brow { Thick, Furrowed, Arched, Count };
-enum class Job { Doctor, Carpenter, Barber, Teacher, Count };
+enum class Eyes   { Narrow, Wide, Piercing, Count };
+enum class Nose   { Flat, Hooked, Bulbous, Count };
+enum class Hair   { Bald, Short, Matted, Count };
+enum class Jaw    { Weak, Square, Heavy, Count };
+enum class Skin   { Pale, Tan, Weathered, Count };
+enum class Brow   { Thick, Furrowed, Arched, Count };
+enum class Job    { Doctor, Carpenter, Barber, Teacher, Count };
+
 //Enum Personality
 enum class Temperament { Calm, Irritable, Melancholic, Cheerful, Count };
-enum class Social { Withdrawn, Reserved, Friendly, Domineering, Count };
-enum class Drive { Greedy, Ambitious, Lazy, Dutiful, Count };
-enum class Bearing { Nervous, Confident, Humble, Arrogant, Count };
+enum class Social      { Withdrawn, Reserved, Friendly, Domineering, Count };
+enum class Drive       { Greedy, Ambitious, Lazy, Dutiful, Count };
+enum class Bearing     { Nervous, Confident, Humble, Arrogant, Count };
 
-//Basic stats
+//Disposition 
+enum class Hobby  { Fishing, Gambling, Reading, Drinking, Fighting, Count };
+enum class Fear   { Sea, Heights, Death, Poverty, Solitude, Count };
+enum class Desire { Wealth, Fame, Family, Freedom, Survival, Count };
+
+//Basic 
 struct Name { std::string val{}; };
-struct Age { int curr{}; };
+struct Age  { int curr{}; };
 
-//Structs for physical the enums
+//Structs for physical enums
 struct SPhysic { Physic build; };
 struct SEyes   { Eyes   shape; };
 struct SNose   { Nose   shape; };
@@ -33,8 +39,13 @@ struct SSkin   { Skin   tone; };
 struct SBrow   { Brow   shape; };
 struct SJob    { Job    curr; };
 
-//Structs for personality the enums
+//Structs for personality enums
 struct STemperament { Temperament curr; };
-struct SSocial { Social      curr; };
-struct SDrive { Drive       curr; };
-struct SBearing { Bearing     curr; };
+struct SSocial      { Social      curr; };
+struct SDrive       { Drive       curr; };
+struct SBearing     { Bearing     curr; };
+
+//Struct for disposition enums
+struct SHobby  { Hobby      curr; };
+struct SFear   { Fear       curr; };
+struct SDesire { Desire     curr; };

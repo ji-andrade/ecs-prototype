@@ -2,9 +2,10 @@
 #include "world.h"
 #include "utils.h"
 
-inline void makePerson(World& world)
+//gnereate persons procedurally
+inline void makePerson(World& world, int numberPersons)
 {
-	for(int i = 0; i < 10; i++)
+	for(int i = 0; i < numberPersons; i++)
 	{
 		ID id = world.nextID++;
 		//Basic 
@@ -24,5 +25,9 @@ inline void makePerson(World& world)
 		world.socialMap[id] =      { static_cast<Social>     (randomInt(0, static_cast<int>(Social::Count) - 1)) };
 		world.driveMap[id] =       { static_cast<Drive>      (randomInt(0, static_cast<int>(Drive::Count) - 1)) };
 		world.bearingMap[id] =     { static_cast<Bearing>    (randomInt(0, static_cast<int>(Bearing::Count) - 1)) };
+		//Assign Disposition 
+		world.hobbyMap[id] =  { static_cast<Hobby>(randomInt(0, static_cast<int>(Hobby::Count) - 1)) };
+		world.fearMap[id] =   { static_cast<Fear>     (randomInt(0, static_cast<int>(Fear::Count) - 1)) };
+		world.desireMap[id] = { static_cast<Desire>      (randomInt(0, static_cast<int>(Desire::Count) - 1)) };
 	}
 }

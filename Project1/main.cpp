@@ -4,8 +4,7 @@
 int main()
 {
 	World world;
-
-	makePerson(world);
+	makePerson(world, 10);
 
 	while (true)
 	{
