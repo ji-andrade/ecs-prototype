@@ -6,6 +6,7 @@ int main()
 	World world;
 
 	makePerson(world);
+
 	while (true)
 	{
 		system("cls");
@@ -13,7 +14,4 @@ int main()
 		printPerson(world, playerInput());
 		_getch();
 	}
-
-	
-
 }

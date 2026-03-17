@@ -23,6 +23,7 @@ inline std::string readFile(std::string filename)
 	return lines[randomInt(0, lines.size() - 1)];
 }
 
+//Enums to string
 inline std::string toString(Physic v)
 {
 	switch (v)

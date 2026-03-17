@@ -57,7 +57,7 @@ inline void printGeneral(const World& world)
 inline int playerInput()
 {
     int input{};
-    std::cout << "Which persons do you wish to see?\n";
+    std::cout << "Which person do you wish to see?\n";
     std::cin >> input;
 
     return input;
