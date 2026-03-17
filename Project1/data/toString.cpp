@@ -5,10 +5,10 @@ std::string toString(Physic v)
 {
     switch (v)
     {
-    case Physic::Lean: return    "Lean and sinewy, with little to spare on the bone";
+    case Physic::Lean:    return "Lean and sinewy, with little to spare on the bone";
     case Physic::Average: return "Average build, neither remarkable nor wanting";
-    case Physic::Stocky: return  "Stocky and broad, carrying his weight close to the ground";
-    default:             return "unknown";
+    case Physic::Stocky:  return "Stocky and broad, carrying his weight close to the ground";
+    default:              return "unknown";
     }
 }
 
@@ -151,6 +151,8 @@ std::string toString(Hobby v)
     case Hobby::Reading:   return "is rarely without a book, even if the light is poor";
     case Hobby::Drinking:  return "drinks with purpose, like a man settling an old debt";
     case Hobby::Fighting:  return "seeks out trouble the way other men seek out comfort";
+    case Hobby::Opium:     return "is given to opium, seeking the fog it brings when the world presses too close";
+    case Hobby::Whoring:   return "spends his coin on women, finding in their company what he cannot find elsewhere";
     default:               return "unknown";
     }
 }

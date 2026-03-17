@@ -125,6 +125,7 @@ void systemHealth(World& world)
             world.sicknessMap[id].curr = Sickness::Delirious;
         }
     }
+
     //improve health
     for (auto& [id, health] : world.healthMap)
     {

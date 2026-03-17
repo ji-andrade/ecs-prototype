@@ -21,7 +21,7 @@ enum class Drive       { Greedy, Ambitious, Lazy, Dutiful, Count };
 enum class Bearing     { Nervous, Confident, Humble, Arrogant, Count };
 
 //Disposition 
-enum class Hobby  { Fishing, Gambling, Reading, Drinking, Fighting, Count };
+enum class Hobby  { Fishing, Whoring, Opium, Gambling, Reading, Drinking, Fighting, Count };
 enum class Fear   { Sea, Heights, Death, Poverty, Solitude, Count };
 enum class Desire { Wealth, Fame, Family, Freedom, Survival, Count };
 
