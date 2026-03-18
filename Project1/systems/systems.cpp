@@ -105,21 +105,21 @@ void systemHealth(World& world)
             canDegrade)
         {
             health.curr = static_cast<Health>(static_cast<int>(health.curr) + 1);
-            world.sicknessMap[id].curr = Sickness::Wasting;
+            world.sicknessMap[id].wasting = true;
         }
         //hunger only
         else if (world.hungerMap.at(id).curr == Hunger::Starving && 
             canDegrade && randomInt(0, 3) == 0)
         {
             health.curr = static_cast<Health>(static_cast<int>(health.curr) + 1);
-            world.sicknessMap[id].curr = Sickness::Malnourished;
+            world.sicknessMap[id].malnourished = true;
         }
         //thirst only
         else if (world.thirstMap.at(id).curr == Thirst::Parched && 
             canDegrade && randomInt(0, 3) == 0)
         {
             health.curr = static_cast<Health>(static_cast<int>(health.curr) + 1);
-            world.sicknessMap[id].curr = Sickness::Dehydrated;
+            world.sicknessMap[id].dehydrated = true;
 
         }      
         //fatigue only
@@ -127,7 +127,7 @@ void systemHealth(World& world)
             canDegrade && randomInt(0, 5) == 0)
         {
             health.curr = static_cast<Health>(static_cast<int>(health.curr) + 1);
-            world.sicknessMap[id].curr = Sickness::Delirious;
+            world.sicknessMap[id].delirious = true;
         }
 
         //recovery 
@@ -138,20 +138,21 @@ void systemHealth(World& world)
             canImprove && randomInt(0, 9) == 0)
         {
             health.curr = static_cast<Health>(static_cast<int>(health.curr) - 1);
-            world.sicknessMap[id].curr = Sickness::None;
+            world.sicknessMap[id].wasting = false;
         }
         //hunger only
         else if (world.hungerMap.at(id).curr == Hunger::Fed &&
             canImprove && randomInt(0, 9) == 0)
         {
             health.curr = static_cast<Health>(static_cast<int>(health.curr) - 1);
-            if (world.sicknessMap.at(id).curr == Sickness::Wasting)
+            if (world.sicknessMap.at(id).wasting == true)
             {
-                world.sicknessMap[id].curr = Sickness::Dehydrated;
+                world.sicknessMap[id].wasting = false;
+                world.sicknessMap[id].dehydrated = true;
             }
-            else if (world.sicknessMap.at(id).curr == Sickness::Malnourished)
+            else if (world.sicknessMap.at(id).malnourished == true)
             {
-                world.sicknessMap[id].curr = Sickness::None;
+                world.sicknessMap[id].malnourished = false;
             }
 
         }
@@ -160,13 +161,14 @@ void systemHealth(World& world)
             canImprove && randomInt(0, 9) == 0)
         {
             health.curr = static_cast<Health>(static_cast<int>(health.curr) - 1);
-            if (world.sicknessMap.at(id).curr == Sickness::Wasting)
+            if (world.sicknessMap.at(id).wasting == true)
             {
-                world.sicknessMap[id].curr = Sickness::Malnourished;
+                world.sicknessMap[id].wasting = false;
+                world.sicknessMap[id].malnourished = true;
             }
-            else if (world.sicknessMap.at(id).curr == Sickness::Dehydrated)
+            else if (world.sicknessMap.at(id).dehydrated == true)
             {
-                world.sicknessMap[id].curr = Sickness::None;
+                world.sicknessMap[id].dehydrated = false;
             }
         }
         //fatigue only
@@ -174,9 +176,9 @@ void systemHealth(World& world)
             canImprove && randomInt(0, 18) == 0)
         {
             health.curr = static_cast<Health>(static_cast<int>(health.curr) - 1);
-            if (world.sicknessMap.at(id).curr == Sickness::Delirious)
+            if (world.sicknessMap.at(id).delirious == true)
             {
-                world.sicknessMap[id].curr = Sickness::None;
+                world.sicknessMap[id].delirious = false;
             }
         }
     }
@@ -193,8 +195,10 @@ void systemMorale(World& world)
         else if (world.healthMap.at(id).curr == Health::Ailing)
         {
             morale.curr = Morale::Anxious;
-            if (world.sicknessMap.at(id).curr != Sickness::None &&
-                static_cast<int>(world.healthMap.at(id).curr) >= 1)
+            if (world.sicknessMap.at(id).feverish  ||
+                world.sicknessMap.at(id).scurvy    ||
+                world.sicknessMap.at(id).dysentery ||
+                world.sicknessMap.at(id).wasting)
             {
                 morale.curr = Morale::Broken;
             }
@@ -214,15 +218,15 @@ void systemScurvy(World& world)
     for (auto& [id, sickness] : world.sicknessMap)
     {
         if (world.teethMap.at(id).ateLemon == false && 
-            sickness.curr != Sickness::Scurvy)
+            world.sicknessMap.at(id).scurvy == false)
         {
-            sickness.curr = Sickness::Scurvy;
-            sickness.start = world.currDay;
+            world.sicknessMap[id].scurvy = true;
+            sickness.scurvyStart = world.currDay;
         }
-        else if (sickness.curr == Sickness::Scurvy)
+        else if (world.sicknessMap.at(id).scurvy == true)
         {
             //14 to 30 day
-            if (world.currDay - sickness.start > 14 && world.currDay - sickness.start <= 30)
+            if (world.currDay - sickness.scurvyStart > 14 && world.currDay - sickness.scurvyStart <= 30)
             {
                 if (randomInt(0, 14) == 0)
                 {
@@ -235,7 +239,7 @@ void systemScurvy(World& world)
                 }
             }
             //after 30 days
-            if (world.currDay - sickness.start > 30)
+            if (world.currDay - sickness.scurvyStart > 30)
             {
                 if (randomInt(0, 9) == 0 && world.teethMap.at(id).num >= 0)
                 {

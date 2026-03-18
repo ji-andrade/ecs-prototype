@@ -211,6 +211,8 @@ std::string toString(Health v)
     }
 }
 
+//temporary removal
+/*
 std::string toString(Sickness v)
 {
     switch (v)
@@ -226,6 +228,7 @@ std::string toString(Sickness v)
     default:                      return "unknown";
     }
 }
+*/
 
 std::string toString(Wound v)
 {

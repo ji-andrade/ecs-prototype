@@ -4,7 +4,9 @@ std::string describePhysical(const World& world, ID id)
 {
     std::string desc;
 
+    
     desc += world.nameMap.at(id).val + " is a " + std::to_string(world.ageMap.at(id).curr) + " years old ";
+    desc += "\nPhysical\n";
     desc += toString(world.jobMap.at(id).curr) + ".\n";
     desc += toString(world.physicalMap.at(id).build) + ", ";
     desc += toString(world.jawMap.at(id).shape) + ".\n";
@@ -20,7 +22,7 @@ std::string describePhysical(const World& world, ID id)
 std::string describePersonality(const World& world, ID id)
 {
     std::string desc;
-
+    desc += "\nPersonality\n";
     desc += "By nature he is " + toString(world.temperamentMap.at(id).curr) + ", ";
     desc += "and " + toString(world.socialMap.at(id).curr) + ".\n";
     desc += toString(world.driveMap.at(id).curr) + ", ";
@@ -32,7 +34,7 @@ std::string describePersonality(const World& world, ID id)
 std::string describeDisposition(const World& world, ID id)
 {
     std::string desc;
-
+    desc += "\nDisposition\n";
     desc += "He " + toString(world.hobbyMap.at(id).curr) + ". ";
     desc += "He " + toString(world.fearMap.at(id).curr) + ". ";
     desc += "Above all he " + toString(world.desireMap.at(id).curr) + ".";
@@ -44,13 +46,41 @@ std::string describeStatus(const World& world, ID id)
 {
     std::string desc;
 
-    desc += "He is " + toString(world.healthMap.at(id).curr) + ". ";
-    desc += toString(world.sicknessMap.at(id).curr) + ". ";
-    desc += toString(world.woundMap.at(id).curr) + ". ";
+    desc += "\Current status\n";
+    //temporary removal
+    //desc += "He is " + toString(world.healthMap.at(id).curr) + ". ";
+    //desc += toString(world.sicknessMap.at(id).curr) + ". ";
+    //desc += toString(world.woundMap.at(id).curr) + ". ";
     desc += "He is " + toString(world.moraleMap.at(id).curr) + ". ";
     desc += "He is " + toString(world.hungerMap.at(id).curr) + ", ";
     desc += toString(world.thirstMap.at(id).curr) + ", ";
     desc += "and " + toString(world.fatigueMap.at(id).curr) + ".";
+
+    return desc;
+}
+//new
+std::string describeHealth(const World& world, ID id)
+{
+    std::string desc;
+    
+    desc += "He is " + toString(world.healthMap.at(id).curr) + ". ";
+
+    auto& s = world.sicknessMap.at(id);
+
+    if (s.scurvy)      
+    {
+        int duration = world.currDay - s.scurvyStart;
+        if (duration < 10)
+            desc += "his gums are tender and bleeding, the first signs of scurvy taking hold.\n";
+        else
+            desc += "riddled with scurvy, his gums black and his joints screaming.\n";
+    }
+    if (s.dysentery)   desc += "Hollowed out by dysentery, too weak to stand for long. \n";
+    if (s.feverish)    desc += "Burning with fever, his eyes glassy and distant.\n";
+    if (s.malnourished) desc += "Malnourished, his body beginning to turn on itself.\n";
+    if (s.dehydrated)  desc += "Dehydrated, his skin tight and his mind starting to slip.\n";
+    if (s.wasting)     desc += "Wasting away, starved of both food and water, not long for this world.\n";
+    if (s.delirious)   desc += "Delirious from exhaustion, seeing things that are not there.\n";
 
     return desc;
 }
@@ -62,5 +92,6 @@ std::string describePerson(const World& world, ID id)
     desc += describePersonality(world, id) + "\n";
     desc += describeDisposition(world, id) + "\n\n";
     desc += describeStatus(world, id) + "\n";
+    desc += describeHealth(world, id) + "\n";
     return desc;
 }

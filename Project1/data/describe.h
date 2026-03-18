@@ -7,3 +7,4 @@ std::string describePersonality(const World& world, ID id);
 std::string describeDisposition(const World& world, ID id);
 std::string describeStatus(const World& world, ID id);
 std::string describePerson(const World& world, ID id);
+std::string describeHealth(const World& world, ID id);

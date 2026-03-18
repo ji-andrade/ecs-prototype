@@ -13,9 +13,9 @@ int main()
 		printPerson(world, playerInput());
 		_getch();
 		systemTime(world);
-		//systemHunger(world);
-		//systemThirst(world);
-		//systemFatigue(world);
+		systemHunger(world);
+		systemThirst(world);
+		systemFatigue(world);
 		systemHealth(world);
 		systemMorale(world);
 		systemScurvy(world);
