@@ -211,25 +211,6 @@ std::string toString(Health v)
     }
 }
 
-//temporary removal
-/*
-std::string toString(Sickness v)
-{
-    switch (v)
-    {
-    case Sickness::None:          return "Free of sickness";
-    case Sickness::Feverish:      return "Burning with fever, his eyes glassy and distant";
-    case Sickness::Scurvy:        return "Riddled with scurvy, his gums black and his joints screaming";
-    case Sickness::Dysentery:     return "Hollowed out by dysentery, too weak to stand for long";
-    case Sickness::Malnourished:  return "Malnourished, his body beginning to turn on itself";
-    case Sickness::Dehydrated:    return "Dehydrated, his skin tight and his mind starting to slip";
-    case Sickness::Wasting:       return "Wasting away, starved of both food and water, not long for this world";
-    case Sickness::Delirious:     return "Delirious from exhaustion, seeing things that are not there";
-    default:                      return "unknown";
-    }
-}
-*/
-
 std::string toString(Wound v)
 {
     switch (v)

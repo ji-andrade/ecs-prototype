@@ -34,6 +34,9 @@
     <ClCompile Include="systems\systems.cpp">
       <Filter>systems</Filter>
     </ClCompile>
+    <ClCompile Include="systems\ui.cpp">
+      <Filter>systems</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core\world.h">
@@ -56,6 +59,9 @@
     </ClInclude>
     <ClInclude Include="utils\utils.h">
       <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="systems\ui.h">
+      <Filter>systems</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

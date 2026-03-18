@@ -1,35 +1,5 @@
 #include "systems.h"
 
-
-void printPerson(const World& world, int input)
-{
-    if (!world.nameMap.count(input))
-    {
-        std::cout << "No person with that ID.\n";
-        return;
-    }
-    std::cout << describePerson(world, input) << "\n";
-}
-
-//temporary
-void printGeneral(const World& world)
-{
-    system("cls");
-    std::cout << "Day " << world.currDay << "\n\n";
-    //std::cout << "Type a number for the person you wish to see" << "\n";
-    for (auto& [id, name] : world.nameMap)
-        std::cout << id << " " << world.nameMap.at(id).val << " \n";
-}
-
-int playerInput()
-{
-    int input{};
-    std::cin >> input;
-    system("cls");
-    return input;
-}
-
-//start here
 void systemTime(World& world)
 {
     world.currDay++;
@@ -100,6 +70,7 @@ void systemHealth(World& world)
         bool canDegrade = health.curr != Health::Dying;
         bool canImprove = health.curr != Health::Healthy;
         //thirst and hunger
+
         if (world.thirstMap.at(id).curr == Thirst::Parched &&
             world.hungerMap.at(id).curr == Hunger::Starving &&
             canDegrade)
@@ -139,6 +110,8 @@ void systemHealth(World& world)
         {
             health.curr = static_cast<Health>(static_cast<int>(health.curr) - 1);
             world.sicknessMap[id].wasting = false;
+            world.sicknessMap[id].malnourished = false;
+            world.sicknessMap[id].dehydrated = false;
         }
         //hunger only
         else if (world.hungerMap.at(id).curr == Hunger::Fed &&
@@ -184,6 +157,7 @@ void systemHealth(World& world)
     }
 }
 
+//need to add thirst and hunger affect morale
 void systemMorale(World& world)
 {
     for (auto& [id, morale] : world.moraleMap)
@@ -191,6 +165,13 @@ void systemMorale(World& world)
         if (world.healthMap.at(id).curr == Health::Healthy)
         {
             morale.curr = Morale::Steady;
+            if (world.thirstMap.at(id).curr == Thirst::Quenched &&
+                world.hungerMap.at(id).curr == Hunger::Fed &&
+                world.fatigueMap.at(id).curr == Fatigue::Rested &&
+                randomInt(0, 4) == 0)
+            {
+                morale.curr = Morale::Inspired;
+            }
         }
         else if (world.healthMap.at(id).curr == Health::Ailing)
         {
@@ -198,7 +179,8 @@ void systemMorale(World& world)
             if (world.sicknessMap.at(id).feverish  ||
                 world.sicknessMap.at(id).scurvy    ||
                 world.sicknessMap.at(id).dysentery ||
-                world.sicknessMap.at(id).wasting)
+                world.sicknessMap.at(id).wasting)  
+             
             {
                 morale.curr = Morale::Broken;
             }
@@ -210,9 +192,8 @@ void systemMorale(World& world)
     }
 }
 
-//for funsies 
 // needs to have cure
-
+//currently no vitamin C system
 void systemScurvy(World& world)
 {
     for (auto& [id, sickness] : world.sicknessMap)
@@ -241,7 +222,7 @@ void systemScurvy(World& world)
             //after 30 days
             if (world.currDay - sickness.scurvyStart > 30)
             {
-                if (randomInt(0, 9) == 0 && world.teethMap.at(id).num >= 0)
+                if (randomInt(0, 9) == 0 && world.teethMap.at(id).num > 0)
                 {
                     world.teethMap[id].num--;
                 }

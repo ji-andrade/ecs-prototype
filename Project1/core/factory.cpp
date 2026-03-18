@@ -32,7 +32,6 @@ void makePerson(World& world, int numberPersons)
 		world.desireMap[id] =  { static_cast<Desire>      (randomInt(0, static_cast<int>(Desire::Count) - 1)) };
 		//Temporary status
 		world.healthMap[id]   = { Health::Healthy };
-		//temporary removal world.sicknessMap[id] = { Sickness::None };
 		world.sicknessMap[id] = {};
 		world.woundMap[id]    = { Wound::None };
 		world.moraleMap[id]   = { Morale::Steady };

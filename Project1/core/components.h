@@ -30,7 +30,6 @@ enum class Desire { Wealth, Fame, Family, Freedom, Survival, Count };
 
 // Current status 
 enum class Health   { Healthy, Ailing, Dying, Count };
-//temporary remove enum class Sickness { None, Feverish, Scurvy, Dysentery, Malnourished, Dehydrated, Wasting, Delirious, Count };
 enum class Wound    { None, Light, Severe, Count };
 enum class Morale   { Steady, Anxious, Broken, Inspired, Count };
 enum class Hunger   { Fed, Hungry, Starving, Count };
@@ -65,10 +64,6 @@ struct SDesire { Desire     curr; };
 
 //Struct for status 
 struct SHealth   { Health     curr; };
-
-//temporary removal struct SSickness { Sickness   curr; int start; };
-
-//new sickness bool
 struct SSickness
 {
     bool feverish{};
@@ -80,7 +75,6 @@ struct SSickness
     bool delirious{};
     int scurvyStart{};
 };
-
 struct SWound    { Wound      curr; };
 struct SMorale   { Morale     curr; };
 struct SHunger   { Hunger     curr; int lastAte; };

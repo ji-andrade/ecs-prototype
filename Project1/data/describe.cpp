@@ -6,8 +6,8 @@ std::string describePhysical(const World& world, ID id)
 
     
     desc += world.nameMap.at(id).val + " is a " + std::to_string(world.ageMap.at(id).curr) + " years old ";
-    desc += "\nPhysical\n";
     desc += toString(world.jobMap.at(id).curr) + ".\n";
+    desc += "\nPhysical\n" ;
     desc += toString(world.physicalMap.at(id).build) + ", ";
     desc += toString(world.jawMap.at(id).shape) + ".\n";
     desc += "His mouth reveals " + toString(world.teethMap.at(id).cond) + ".";
@@ -47,10 +47,6 @@ std::string describeStatus(const World& world, ID id)
     std::string desc;
 
     desc += "\Current status\n";
-    //temporary removal
-    //desc += "He is " + toString(world.healthMap.at(id).curr) + ". ";
-    //desc += toString(world.sicknessMap.at(id).curr) + ". ";
-    //desc += toString(world.woundMap.at(id).curr) + ". ";
     desc += "He is " + toString(world.moraleMap.at(id).curr) + ". ";
     desc += "He is " + toString(world.hungerMap.at(id).curr) + ", ";
     desc += toString(world.thirstMap.at(id).curr) + ", ";
@@ -70,7 +66,7 @@ std::string describeHealth(const World& world, ID id)
     if (s.scurvy)      
     {
         int duration = world.currDay - s.scurvyStart;
-        if (duration < 10)
+        if (duration < 14)
             desc += "his gums are tender and bleeding, the first signs of scurvy taking hold.\n";
         else
             desc += "riddled with scurvy, his gums black and his joints screaming.\n";

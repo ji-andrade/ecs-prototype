@@ -24,7 +24,6 @@ std::string toString(Fear v);
 std::string toString(Desire v);
 //Status 
 std::string toString(Health v);
-//temporary removal std::string toString(Sickness v);
 std::string toString(Wound v);
 std::string toString(Morale v);
 std::string toString(Hunger v);
