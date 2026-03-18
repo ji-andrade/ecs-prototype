@@ -1,6 +1,5 @@
 #include "ui.h"
 
-
 void printPerson(const World& world, int input)
 {
     if (!world.nameMap.count(input))

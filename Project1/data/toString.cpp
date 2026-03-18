@@ -27,9 +27,9 @@ std::string toString(Nose v)
 {
     switch (v)
     {
-    case Nose::Flat:    return "a flat, broad nose";
-    case Nose::Hooked:  return "a hooked nose, sharp as a crow's beak";
-    case Nose::Bulbous: return "a bulbous nose, red at the tip";
+    case Nose::Flat:    return "A flat, broad nose";
+    case Nose::Hooked:  return "A hooked nose, sharp as a crow's beak";
+    case Nose::Bulbous: return "A bulbous nose, red at the tip";
     default:            return "unknown";
     }
 }
@@ -38,9 +38,9 @@ std::string toString(Hair v)
 {
     switch (v)
     {
-    case Hair::Bald:   return "A bare scalp, shaved or long since surrendered";
-    case Hair::Short:  return "Short cropped hair, practical and unadorned";
-    case Hair::Matted: return "Matted hair, knotted and unwashed";
+    case Hair::Bald:   return "a bare scalp, shaved or long since surrendered";
+    case Hair::Short:  return "short cropped hair, practical and unadorned";
+    case Hair::Matted: return "matted hair, knotted and unwashed";
     default:           return "unknown";
     }
 }
@@ -61,7 +61,7 @@ std::string toString(Skin v)
     switch (v)
     {
     case Skin::Pale:      return "pale skin, as though rarely touched by sun";
-    case Skin::Tan:       return "tan and weathered from long days outdoors";
+    case Skin::Tan:       return "tan and weathered skin from long days outdoors";
     case Skin::Weathered: return "deeply weathered skin, creased and hardened";
     default:              return "unknown";
     }

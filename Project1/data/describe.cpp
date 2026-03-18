@@ -4,16 +4,18 @@ std::string describePhysical(const World& world, ID id)
 {
     std::string desc;
 
-    desc += "Person\n";
+    desc += "---------------------------------------------------------------------------------------------\n";
     desc += world.nameMap.at(id).val + " is a " + std::to_string(world.ageMap.at(id).curr) + " years old ";
     desc += toString(world.jobMap.at(id).curr) + ".\n";
     desc += "\nPhysical\n" ;
     desc += toString(world.physicalMap.at(id).build) + ", ";
     desc += toString(world.jawMap.at(id).shape) + ".\n";
-    desc += "His mouth reveals " + toString(world.teethMap.at(id).cond) + ".";
-    desc += " Currently has " + std::to_string(world.teethMap.at(id).num) + " teeth.\n";
-    desc += "He has " + toString(world.eyesMap.at(id).shape) + ", ";
-    desc += toString(world.noseMap.at(id).shape) + ".\n";
+    desc += "He has " + toString(world.skinMap.at(id).tone) + ".\n";
+    desc += "His mouth reveals " + std::to_string(world.teethMap.at(id).num) + " " +
+        toString(world.teethMap.at(id).cond) + ".\n";
+    desc += "He has " + toString(world.browMap.at(id).shape) + " and ";
+    desc += toString(world.eyesMap.at(id).shape) + ".\n";
+    desc += toString(world.noseMap.at(id).shape) + " and ";
     desc += toString(world.hairMap.at(id).style) + ".\n";
 
     return desc;

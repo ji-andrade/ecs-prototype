@@ -10,11 +10,11 @@ void systemNeeds(World& world)
     //hunger
     for (auto& [id, hunger] : world.hungerMap)
     {
-        if (world.currDay - hunger.lastAte < 1)
+        if (world.currDay - hunger.lastAte < HUNGER_FED_DAYS)
         {
             hunger.curr = Hunger::Fed;
         }
-        else if (world.currDay - hunger.lastAte < 4)
+        else if (world.currDay - hunger.lastAte < HUNGER_HUNGRY_DAYS)
         {
             hunger.curr = Hunger::Hungry;
         }
@@ -26,11 +26,11 @@ void systemNeeds(World& world)
     //Thirst
     for (auto& [id, thirst] : world.thirstMap)
     {
-        if (world.currDay - thirst.lastDrink < 1)
+        if (world.currDay - thirst.lastDrink < THIRST_QUENCHED_DAYS)
         {
             thirst.curr = Thirst::Quenched;
         }
-        else if (world.currDay - thirst.lastDrink < 3)
+        else if (world.currDay - thirst.lastDrink < THIRST_THIRSTY_DAYS)
         {
             thirst.curr = Thirst::Thirsty;
         }
@@ -42,11 +42,11 @@ void systemNeeds(World& world)
     //Fatigue
     for (auto& [id, fatigue] : world.fatigueMap)
     {
-        if (world.currDay - fatigue.lastSlept < 1)
+        if (world.currDay - fatigue.lastSlept < FATIGUE_RESTED_DAYS)
         {
             fatigue.curr = Fatigue::Rested;
         }
-        else if (world.currDay - fatigue.lastSlept < 3)
+        else if (world.currDay - fatigue.lastSlept < FATIGUE_TIRED_DAYS)
         {
             fatigue.curr = Fatigue::Tired;
         }
@@ -197,12 +197,10 @@ void systemMorale(World& world)
         }
     }
 }
-
 // needs to have cure scurvy
 //currently no vitamin C system
-void systemDisease(World& world)
+static void updateScurvy(World& world)
 {
-    //scurvy
     for (auto& [id, sickness] : world.sicknessMap)
     {
         auto& fatigue = world.fatigueMap.at(id);
@@ -217,7 +215,8 @@ void systemDisease(World& world)
         else if (sickness.scurvy)
         {
             //14 to 30 day
-            if (world.currDay - sickness.scurvyStart > 14 && world.currDay - sickness.scurvyStart <= 30)
+            if (world.currDay - sickness.scurvyStart > SCURVY_EARLY_DAYS &&
+                world.currDay - sickness.scurvyStart <= SCURVY_LATE_DAYS)
             {
                 if (randomInt(0, 14) == 0)
                 {
@@ -230,7 +229,7 @@ void systemDisease(World& world)
                 }
             }
             //after 30 days
-            else if (world.currDay - sickness.scurvyStart > 30)
+            else if (world.currDay - sickness.scurvyStart > SCURVY_LATE_DAYS)
             {
                 if (randomInt(0, 9) == 0 && teeth.num > 0)
                 {
@@ -248,5 +247,9 @@ void systemDisease(World& world)
             }
         }
     }
-    //
+}
+
+void systemDisease(World& world)
+{
+    updateScurvy(world);
 }

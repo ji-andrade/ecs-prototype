@@ -135,8 +135,8 @@
     <ClCompile Include="systems\ui.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="constants.h" />
     <ClInclude Include="core\components.h" />
+    <ClInclude Include="core\constants.h" />
     <ClInclude Include="core\factory.h" />
     <ClInclude Include="core\world.h" />
     <ClInclude Include="data\describe.h" />

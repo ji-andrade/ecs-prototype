@@ -63,7 +63,7 @@
     <ClInclude Include="systems\ui.h">
       <Filter>systems</Filter>
     </ClInclude>
-    <ClInclude Include="constants.h">
+    <ClInclude Include="core\constants.h">
       <Filter>core</Filter>
     </ClInclude>
   </ItemGroup>
