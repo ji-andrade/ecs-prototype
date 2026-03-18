@@ -5,9 +5,7 @@
 
 //systems new
 void systemTime(World& world);
-void systemHunger(World& world);
-void systemThirst(World& world);
-void systemFatigue(World& world);
+void systemNeeds(World& world);
 void systemHealth(World& world);
 void systemMorale(World& world);
-void systemScurvy(World& world);
+void systemDisease(World& world);
