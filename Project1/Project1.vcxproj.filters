@@ -63,6 +63,9 @@
     <ClInclude Include="systems\ui.h">
       <Filter>systems</Filter>
     </ClInclude>
+    <ClInclude Include="constants.h">
+      <Filter>core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="data\names.txt">

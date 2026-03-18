@@ -46,7 +46,7 @@ std::string describeStatus(const World& world, ID id)
 {
     std::string desc;
 
-    desc += "\Current status\n";
+    desc += "\nCurrent status\n";
     desc += "He is " + toString(world.moraleMap.at(id).curr) + ". ";
     desc += "He is " + toString(world.hungerMap.at(id).curr) + ", ";
     desc += toString(world.thirstMap.at(id).curr) + ", ";
@@ -61,22 +61,22 @@ std::string describeHealth(const World& world, ID id)
     
     desc += "He is " + toString(world.healthMap.at(id).curr) + ". ";
 
-    auto& s = world.sicknessMap.at(id);
+    auto& sickness = world.sicknessMap.at(id);
 
-    if (s.scurvy)      
+    if (sickness.scurvy)      
     {
-        int duration = world.currDay - s.scurvyStart;
-        if (duration < 14)
+        int duration = world.currDay - sickness.scurvyStart;
+        if (duration < SCURVY_EARLY_DAYS)
             desc += "his gums are tender and bleeding, the first signs of scurvy taking hold.\n";
         else
             desc += "riddled with scurvy, his gums black and his joints screaming.\n";
     }
-    if (s.dysentery)   desc += "Hollowed out by dysentery, too weak to stand for long. \n";
-    if (s.feverish)    desc += "Burning with fever, his eyes glassy and distant.\n";
-    if (s.malnourished) desc += "Malnourished, his body beginning to turn on itself.\n";
-    if (s.dehydrated)  desc += "Dehydrated, his skin tight and his mind starting to slip.\n";
-    if (s.wasting)     desc += "Wasting away, starved of both food and water, not long for this world.\n";
-    if (s.delirious)   desc += "Delirious from exhaustion, seeing things that are not there.\n";
+    if (sickness.dysentery)   desc += "Hollowed out by dysentery, too weak to stand for long. \n";
+    if (sickness.feverish)    desc += "Burning with fever, his eyes glassy and distant.\n";
+    if (sickness.malnourished) desc += "Malnourished, his body beginning to turn on itself.\n";
+    if (sickness.dehydrated)  desc += "Dehydrated, his skin tight and his mind starting to slip.\n";
+    if (sickness.wasting)     desc += "Wasting away, starved of both food and water, not long for this world.\n";
+    if (sickness.delirious)   desc += "Delirious from exhaustion, seeing things that are not there.\n";
 
     return desc;
 }

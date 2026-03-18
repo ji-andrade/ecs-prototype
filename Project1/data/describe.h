@@ -1,5 +1,6 @@
 #pragma once
 #include "../systems/systems.h"
+#include "../core/constants.h"
 #include "toString.h"
 
 std::string describePhysical(const World& world, ID id);

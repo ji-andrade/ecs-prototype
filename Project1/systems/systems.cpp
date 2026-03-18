@@ -209,8 +209,7 @@ void systemDisease(World& world)
         auto& health = world.healthMap.at(id);
         auto& teeth = world.teethMap.at(id);
 
-        if (teeth.ateLemon == false && 
-            sickness.scurvy == false)
+        if (!teeth.ateLemon && !sickness.scurvy)
         {
             sickness.scurvy = true;
             sickness.scurvyStart = world.currDay;
@@ -231,7 +230,7 @@ void systemDisease(World& world)
                 }
             }
             //after 30 days
-            if (world.currDay - sickness.scurvyStart > 30)
+            else if (world.currDay - sickness.scurvyStart > 30)
             {
                 if (randomInt(0, 9) == 0 && teeth.num > 0)
                 {
