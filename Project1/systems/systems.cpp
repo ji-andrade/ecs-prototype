@@ -1,5 +1,14 @@
 #include "systems.h"
 
+void systemTick(World& world)
+{
+    systemTime(world);
+    systemNeeds(world);
+    systemHealth(world);
+    systemMorale(world);
+    systemDisease(world);
+}
+
 void systemTime(World& world)
 {
     world.time.currDay++;

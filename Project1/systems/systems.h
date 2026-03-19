@@ -5,6 +5,8 @@
 //#include <iostream>
 
 //systems new
+void systemTick(World& world);
+
 void systemTime(World& world);
 
 void systemNeeds(World& world);

@@ -17,7 +17,7 @@
     <Filter Include="core">
       <UniqueIdentifier>{6566dab5-d0fb-46bb-9c00-343f9c12f39d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="renderer">
+    <Filter Include="UI">
       <UniqueIdentifier>{9ae16098-854a-4813-b5d7-14ee3fe32dd5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -38,7 +38,7 @@
       <Filter>systems</Filter>
     </ClCompile>
     <ClCompile Include="ui\renderer.cpp">
-      <Filter>renderer</Filter>
+      <Filter>UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -67,7 +67,7 @@
       <Filter>core</Filter>
     </ClInclude>
     <ClInclude Include="ui\renderer.h">
-      <Filter>renderer</Filter>
+      <Filter>UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
