@@ -1,22 +1,15 @@
-#include <conio.h>
-#include "systems/systems.h"
-#include "systems/ui.h"
+#include "ui/renderer.h"
 
 int main()
 {
-	World world;
-	makePerson(world, 10);
+    //temp
+    int maxPerson{ 20 };
+    //
 
-	while (true)
-	{
-		system("cls");
-		printGeneral(world);
-		printPerson(world, playerInput());
-		_getch();
-		systemTime(world);
-		systemNeeds(world);
-		systemHealth(world);
-		systemMorale(world);
-		systemDisease(world);
-	}
+    World world;
+    makePerson(world, maxPerson);
+
+    mainCurses(world);
+
+    return 0;
 }

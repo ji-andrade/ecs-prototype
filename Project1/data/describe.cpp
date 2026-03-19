@@ -4,7 +4,6 @@ std::string describePhysical(const World& world, ID id)
 {
     std::string desc;
 
-    desc += "---------------------------------------------------------------------------------------------\n";
     desc += world.nameMap.at(id).val + " is a " + std::to_string(world.ageMap.at(id).curr) + " years old ";
     desc += toString(world.jobMap.at(id).curr) + ".\n";
     desc += "\nPhysical\n" ;

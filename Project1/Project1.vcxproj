@@ -132,7 +132,7 @@
     <ClCompile Include="data\toString.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="systems\systems.cpp" />
-    <ClCompile Include="systems\ui.cpp" />
+    <ClCompile Include="ui\renderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core\components.h" />
@@ -142,7 +142,7 @@
     <ClInclude Include="data\describe.h" />
     <ClInclude Include="data\toString.h" />
     <ClInclude Include="systems\systems.h" />
-    <ClInclude Include="systems\ui.h" />
+    <ClInclude Include="ui\renderer.h" />
     <ClInclude Include="utils\utils.h" />
   </ItemGroup>
   <ItemGroup>
