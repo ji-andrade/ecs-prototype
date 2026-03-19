@@ -3,5 +3,8 @@
 #include <sstream>
 #include "../systems/systems.h"
 
-void cursesPerson(World& world);
+enum class Menu { mainMenu, personMenu, quit };
+
+void cursesPerson(World& world, Menu& currentMenu);
 void mainCurses(World& world);
+void cursesMainMenu(Menu& currentMenu);

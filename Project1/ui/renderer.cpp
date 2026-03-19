@@ -1,25 +1,87 @@
 #include "renderer.h"
 
-//test 
-
 void mainCurses(World& world)
 {
-    initscr();        
-    noecho();
-    keypad(stdscr, TRUE);
+    Menu currentMenu = Menu::mainMenu;
 
-    cursesPerson(world);
-
-    endwin();
-}
-
-void cursesPerson(World& world)
-{
     initscr();
     noecho();
     curs_set(0);
     keypad(stdscr, TRUE);
 
+    while (currentMenu != Menu::quit)
+    {
+        switch (currentMenu)
+        {
+        case Menu::mainMenu:   cursesMainMenu(currentMenu);        break;
+        case Menu::personMenu: cursesPerson(world, currentMenu);   break;
+        }
+    }
+
+    endwin();
+}
+
+void cursesMainMenu(Menu& currentMenu)
+{
+
+    int termHeight = getmaxy(stdscr);
+    int termWidth = getmaxx(stdscr);
+
+    WINDOW* bigWin = newwin(termHeight, termWidth, 0, 0);
+    WINDOW* mainWin = newwin(10, 20, termHeight / 2 - 5, termWidth / 2 - 10);
+
+
+    keypad(mainWin, TRUE);
+    
+    int selected = 0;
+
+    while (true)
+    {
+        wclear(bigWin);
+        wclear(mainWin);
+        box(bigWin, 0, 0);
+        box(mainWin, 0, 0);
+
+        mvwprintw(mainWin, 1, 2, "Main Menu");
+
+        if (selected == 0) wattron(mainWin, A_REVERSE);
+        mvwprintw(mainWin, 3, 2, "Person Menu");
+        wattroff(mainWin, A_REVERSE);
+
+        if (selected == 1) wattron(mainWin, A_REVERSE);
+        mvwprintw(mainWin, 4, 2, "Quit");
+        wattroff(mainWin, A_REVERSE);
+
+
+        wrefresh(bigWin);
+        wrefresh(mainWin);
+
+        int key = wgetch(mainWin);
+        if (key == KEY_UP && selected > 0) selected--;
+        if (key == KEY_DOWN && selected < 1) selected++;
+        if (key == '\n')
+        {
+            if (selected == 0) currentMenu = Menu::personMenu;
+            if (selected == 1) currentMenu = Menu::quit;
+            break;
+        }
+        if (key == KEY_RESIZE) {
+            resize_term(0, 0);
+            termHeight = getmaxy(stdscr);
+            termWidth = getmaxx(stdscr);
+            delwin(bigWin);
+            delwin(mainWin);
+            bigWin = newwin(termHeight, termWidth, 0, 0);
+            mainWin = newwin(10, 20, termHeight / 2 - 5, termWidth / 2 - 10);
+            keypad(mainWin, TRUE);
+        }
+    }
+    delwin(bigWin);
+    delwin(mainWin);
+}
+
+void cursesPerson(World& world, Menu& currentMenu)
+{
     int termHeight = getmaxy(stdscr);
     int termWidth = getmaxx(stdscr);
 
@@ -30,6 +92,7 @@ void cursesPerson(World& world)
 
     keypad(leftWin, TRUE);
 
+    int scrollOffset = 0;
     int currentID = 0;
     //temporary
     int maxID = 20;
@@ -43,7 +106,8 @@ void cursesPerson(World& world)
         box(rightWin, 0, 0);
 
         mvwprintw(leftWin, 1, 1, "Day %d", world.currDay);
-        mvwprintw(leftWin, termHeight - 2, 1, "UP/DOWN to cycle, D)ays, Q)uit");
+        mvwprintw(leftWin, termHeight - 3, 1, "UP/DOWN to cycle   j/k scroll");
+        mvwprintw(leftWin, termHeight - 2, 1, "p)ass time         q)uit");
      
 
         int row = 3;
@@ -64,28 +128,37 @@ void cursesPerson(World& world)
         std::istringstream stream(desc);
         std::string line;
         int maxWidth = (termWidth - 40) - 4;
-        row = 1;
+        row = 1 - scrollOffset;
         while (std::getline(stream, line) && row < termHeight - 1) {
             while (line.size() > maxWidth) {
                 std::string chunk = line.substr(0, maxWidth);
                 int lastSpace = chunk.rfind(' ');
                 if (lastSpace != std::string::npos)
                     chunk = line.substr(0, lastSpace);
-                mvwprintw(rightWin, row++, 2, chunk.c_str());
+                if (row >= 1 && row < termHeight - 1)
+                    mvwprintw(rightWin, row, 2, chunk.c_str());
+                row++;
                 line = line.substr(chunk.size() + 1);
                 if (row >= termHeight - 1) break;
             }
-            if (row < termHeight - 1)
-                mvwprintw(rightWin, row++, 2, line.c_str());
+            if (row < termHeight - 1) {
+                if (row >= 1)
+                    mvwprintw(rightWin, row, 2, line.c_str());
+                row++;
+            }
         }
 
         wrefresh(leftWin);
         wrefresh(rightWin);
 
         int key = wgetch(leftWin);
-        if (key == 'q') break;
-        //
-        if (key == 'd')
+        if (key == 'q')
+        {
+            currentMenu = Menu::mainMenu;
+            break;
+        }     
+        //pass time
+        if (key == 'p')
         {
             systemTime(world);
             systemNeeds(world);
@@ -93,17 +166,17 @@ void cursesPerson(World& world)
             systemMorale(world);
             systemDisease(world);
         }
-        //
-        if (key == KEY_UP && currentID > 0)      currentID--;
+        //scrolls up and down using j/k
+        if (key == KEY_UP && currentID > 0) { currentID--; scrollOffset = 0; }
         // value 20 is temporary refer to maxID
-        if (key == KEY_DOWN && currentID < 20 - 1) currentID++;
+        if (key == KEY_DOWN && currentID < 20 - 1) { currentID++; scrollOffset = 0; }
+        if (key == 'j') scrollOffset++;
+        if (key == 'k' && scrollOffset > 0) scrollOffset--;
 
         if (key == KEY_RESIZE) {
             resize_term(0, 0);
             termHeight = getmaxy(stdscr);
             termWidth = getmaxx(stdscr);
-
-            
             delwin(leftWin);
             delwin(rightWin);
             leftWin = newwin(termHeight, 38, 0, 0);
@@ -114,5 +187,4 @@ void cursesPerson(World& world)
 
     delwin(leftWin);
     delwin(rightWin);
-    endwin();
 }

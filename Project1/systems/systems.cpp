@@ -5,9 +5,8 @@ void systemTime(World& world)
     world.currDay++;
 }
 
-void systemNeeds(World& world)
+static void systemHunger(World& world)
 {
-    //hunger
     for (auto& [id, hunger] : world.hungerMap)
     {
         if (world.currDay - hunger.lastAte < HUNGER_FED_DAYS)
@@ -23,7 +22,10 @@ void systemNeeds(World& world)
             hunger.curr = Hunger::Starving;
         }
     }
-    //Thirst
+}
+
+static void systemThirst(World& world)
+{
     for (auto& [id, thirst] : world.thirstMap)
     {
         if (world.currDay - thirst.lastDrink < THIRST_QUENCHED_DAYS)
@@ -39,7 +41,10 @@ void systemNeeds(World& world)
             thirst.curr = Thirst::Parched;
         }
     }
-    //Fatigue
+}
+
+static void systemFatigue(World& world)
+{
     for (auto& [id, fatigue] : world.fatigueMap)
     {
         if (world.currDay - fatigue.lastSlept < FATIGUE_RESTED_DAYS)
@@ -56,6 +61,14 @@ void systemNeeds(World& world)
         }
     }
 }
+
+void systemNeeds(World& world)
+{
+    systemHunger(world);
+    systemThirst(world);
+    systemFatigue(world);
+}
+
 //health
 void systemHealth(World& world)
 {
