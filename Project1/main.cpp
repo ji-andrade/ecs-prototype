@@ -2,20 +2,10 @@
 
 int main()
 {
-    //temp
-    int maxPerson{ 20 };
-    //
-
     World world;
-    makePerson(world, maxPerson);
+    makePerson(world, 20);
 
-    while (true)
-    {
-        mainCurses(world);
-        
-
-    }
-
+    mainCurses(world);
 
     return 0;
 }

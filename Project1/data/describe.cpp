@@ -68,9 +68,9 @@ std::string describeHealth(const World& world, ID id)
     {
         int duration = world.currDay - sickness.scurvyStart;
         if (duration < SCURVY_EARLY_DAYS)
-            desc += "his gums are tender and bleeding, the first signs of scurvy taking hold.\n";
+            desc += "His gums are tender and bleeding, the first signs of scurvy taking hold.\n";
         else
-            desc += "riddled with scurvy, his gums black and his joints screaming.\n";
+            desc += "Riddled with scurvy, his gums black and his joints screaming.\n";
     }
     if (sickness.dysentery)   desc += "Hollowed out by dysentery, too weak to stand for long. \n";
     if (sickness.feverish)    desc += "Burning with fever, his eyes glassy and distant.\n";

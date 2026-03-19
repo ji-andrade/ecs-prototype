@@ -17,6 +17,7 @@ void cursesPerson(World& world)
 {
     initscr();
     noecho();
+    curs_set(0);
     keypad(stdscr, TRUE);
 
     int termHeight = getmaxy(stdscr);
@@ -42,16 +43,20 @@ void cursesPerson(World& world)
         box(rightWin, 0, 0);
 
         mvwprintw(leftWin, 1, 1, "Day %d", world.currDay);
-        mvwprintw(leftWin, 2, 1, "UP/DOWN to cycle, Q to quit");
-        mvwprintw(leftWin, 3, 1, "D to pass days");
+        mvwprintw(leftWin, termHeight - 2, 1, "UP/DOWN to cycle, D)ays, Q)uit");
+     
 
         int row = 3;
         for (auto& [id, name] : world.nameMap)
         {
             if (id == currentID)
-                mvwprintw(leftWin, row++ + 2, 1, "o %s", name.val.c_str());
+            {
+                wattron(leftWin, A_REVERSE);
+                mvwprintw(leftWin, row++ , 1, " %s", name.val.c_str());
+                wattroff(leftWin, A_REVERSE);
+            }
             else
-                mvwprintw(leftWin, row++ + 2, 1, "  %s", name.val.c_str());
+                mvwprintw(leftWin, row++ , 1, "  %s", name.val.c_str());
         }
 
  
