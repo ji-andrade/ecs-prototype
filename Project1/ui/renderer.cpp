@@ -41,16 +41,17 @@ void cursesPerson(World& world)
         box(leftWin, 0, 0);   
         box(rightWin, 0, 0);
 
-        mvwprintw(leftWin, 0, 0, "Day %d", world.currDay);
-        mvwprintw(leftWin, 0, 0, "UP/DOWN to cycle, Q to quit");
+        mvwprintw(leftWin, 1, 1, "Day %d", world.currDay);
+        mvwprintw(leftWin, 2, 1, "UP/DOWN to cycle, Q to quit");
+        mvwprintw(leftWin, 3, 1, "D to pass days");
 
         int row = 3;
         for (auto& [id, name] : world.nameMap)
         {
             if (id == currentID)
-                mvwprintw(leftWin, row++, 1, "o %s", name.val.c_str());
+                mvwprintw(leftWin, row++ + 2, 1, "o %s", name.val.c_str());
             else
-                mvwprintw(leftWin, row++, 1, "  %s", name.val.c_str());
+                mvwprintw(leftWin, row++ + 2, 1, "  %s", name.val.c_str());
         }
 
  
@@ -78,6 +79,16 @@ void cursesPerson(World& world)
 
         int key = wgetch(leftWin);
         if (key == 'q') break;
+        //
+        if (key == 'd')
+        {
+            systemTime(world);
+            systemNeeds(world);
+            systemHealth(world);
+            systemMorale(world);
+            systemDisease(world);
+        }
+        //
         if (key == KEY_UP && currentID > 0)      currentID--;
         // value 20 is temporary refer to maxID
         if (key == KEY_DOWN && currentID < 20 - 1) currentID++;

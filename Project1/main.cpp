@@ -9,7 +9,13 @@ int main()
     World world;
     makePerson(world, maxPerson);
 
-    mainCurses(world);
+    while (true)
+    {
+        mainCurses(world);
+        
+
+    }
+
 
     return 0;
 }
