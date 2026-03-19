@@ -266,3 +266,38 @@ std::string toString(Fatigue v)
     default:                 return "unknown";
     }
 }
+
+std::string toString(DaysOfWeek v)
+{
+    switch (v)
+    {
+    case DaysOfWeek::Monday:    return "Monday";
+    case DaysOfWeek::Tuesday:   return "Tuesday";
+    case DaysOfWeek::Wednesday: return "Wednesday";
+    case DaysOfWeek::Thursday:  return "Thursday";
+    case DaysOfWeek::Friday:    return "Friday";
+    case DaysOfWeek::Saturday:  return "Saturday";
+    case DaysOfWeek::Sunday:    return "Sunday";
+    default:                    return "unknown";
+    }
+}
+
+std::string toString(MonthsOfYear v)
+{
+    switch (v)
+    {
+    case MonthsOfYear::January:   return "January";
+    case MonthsOfYear::February:  return "February";
+    case MonthsOfYear::March:     return "March";
+    case MonthsOfYear::April:     return "April";
+    case MonthsOfYear::May:       return "May";
+    case MonthsOfYear::June:      return "June";
+    case MonthsOfYear::July:      return "July";
+    case MonthsOfYear::August:    return "August";
+    case MonthsOfYear::September: return "September";
+    case MonthsOfYear::October:   return "October";
+    case MonthsOfYear::November:  return "November";
+    case MonthsOfYear::December:  return "December";
+    default:                      return "unknown";
+    }
+}

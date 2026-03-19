@@ -4,6 +4,19 @@
 
 using ID = uint32_t;
 
+//Enum Time
+enum class DaysOfWeek{ Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday};
+enum class MonthsOfYear{January, February, March, April, May, June, July, 
+    August, September, October, November, December};
+//Array month time
+constexpr int daysInMonth[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+//Time struct
+struct Time {
+    int currDay;
+    int year;
+    DaysOfWeek weekDay;
+    MonthsOfYear yearMonth;
+};
 //Enum Physical
 enum class Physic { Lean, Average, Stocky, Count };
 enum class Eyes   { Narrow, Wide, Piercing, Count };

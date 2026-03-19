@@ -2,6 +2,9 @@
 #include "../systems/systems.h"
 #include <string>
 
+//Days of week and Month
+std::string toString(DaysOfWeek v);
+std::string toString(MonthsOfYear v);
 //Physical 
 std::string toString(Physic v);
 std::string toString(Eyes v);

@@ -6,8 +6,8 @@ struct World {
 
 	//id counter
 	ID nextID = 0;
-	int currDay = 1;
-
+	//new time system
+	Time time = { 1, 1600, DaysOfWeek::Wednesday, MonthsOfYear::January };
 	//Basic
 	std::unordered_map<ID, Name>         nameMap;
 	std::unordered_map<ID, Age>          ageMap;

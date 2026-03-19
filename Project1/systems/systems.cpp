@@ -2,18 +2,33 @@
 
 void systemTime(World& world)
 {
-    world.currDay++;
+    world.time.currDay++;
+    world.time.weekDay = static_cast<DaysOfWeek>((static_cast<int>(world.time.weekDay) + 1) % 7);
+
+    if (world.time.currDay > daysInMonth[static_cast<int>(world.time.yearMonth)])
+    {
+        world.time.currDay = 1;
+        if (static_cast<int>(world.time.yearMonth) >= 11)
+        {
+            world.time.year++;
+            world.time.yearMonth = MonthsOfYear::January;
+        }
+        else
+        {
+            world.time.yearMonth = static_cast<MonthsOfYear>(static_cast<int>(world.time.yearMonth) + 1);
+        }
+    }
 }
 
 static void systemHunger(World& world)
 {
     for (auto& [id, hunger] : world.hungerMap)
     {
-        if (world.currDay - hunger.lastAte < HUNGER_FED_DAYS)
+        if (world.time.currDay - hunger.lastAte < HUNGER_FED_DAYS)
         {
             hunger.curr = Hunger::Fed;
         }
-        else if (world.currDay - hunger.lastAte < HUNGER_HUNGRY_DAYS)
+        else if (world.time.currDay - hunger.lastAte < HUNGER_HUNGRY_DAYS)
         {
             hunger.curr = Hunger::Hungry;
         }
@@ -28,11 +43,11 @@ static void systemThirst(World& world)
 {
     for (auto& [id, thirst] : world.thirstMap)
     {
-        if (world.currDay - thirst.lastDrink < THIRST_QUENCHED_DAYS)
+        if (world.time.currDay - thirst.lastDrink < THIRST_QUENCHED_DAYS)
         {
             thirst.curr = Thirst::Quenched;
         }
-        else if (world.currDay - thirst.lastDrink < THIRST_THIRSTY_DAYS)
+        else if (world.time.currDay - thirst.lastDrink < THIRST_THIRSTY_DAYS)
         {
             thirst.curr = Thirst::Thirsty;
         }
@@ -47,11 +62,11 @@ static void systemFatigue(World& world)
 {
     for (auto& [id, fatigue] : world.fatigueMap)
     {
-        if (world.currDay - fatigue.lastSlept < FATIGUE_RESTED_DAYS)
+        if (world.time.currDay - fatigue.lastSlept < FATIGUE_RESTED_DAYS)
         {
             fatigue.curr = Fatigue::Rested;
         }
-        else if (world.currDay - fatigue.lastSlept < FATIGUE_TIRED_DAYS)
+        else if (world.time.currDay - fatigue.lastSlept < FATIGUE_TIRED_DAYS)
         {
             fatigue.curr = Fatigue::Tired;
         }
@@ -223,17 +238,17 @@ static void updateScurvy(World& world)
         if (!teeth.ateLemon && !sickness.scurvy)
         {
             sickness.scurvy = true;
-            sickness.scurvyStart = world.currDay;
+            sickness.scurvyStart = world.time.currDay;
         }
         else if (sickness.scurvy)
         {
             //14 to 30 day
-            if (world.currDay - sickness.scurvyStart > SCURVY_EARLY_DAYS &&
-                world.currDay - sickness.scurvyStart <= SCURVY_LATE_DAYS)
+            if (world.time.currDay - sickness.scurvyStart > SCURVY_EARLY_DAYS &&
+                world.time.currDay - sickness.scurvyStart <= SCURVY_LATE_DAYS)
             {
                 if (randomInt(0, 14) == 0)
                 {
-                    fatigue.lastSlept = world.currDay - 4;
+                    fatigue.lastSlept = world.time.currDay - 4;
                 }
 
                 if (randomInt(0, 9) == 0 && health.curr != Health::Dying)
@@ -242,7 +257,7 @@ static void updateScurvy(World& world)
                 }
             }
             //after 30 days
-            else if (world.currDay - sickness.scurvyStart > SCURVY_LATE_DAYS)
+            else if (world.time.currDay - sickness.scurvyStart > SCURVY_LATE_DAYS)
             {
                 if (randomInt(0, 9) == 0 && teeth.num > 0)
                 {
@@ -250,7 +265,7 @@ static void updateScurvy(World& world)
                 }
                 if (randomInt(0, 6) == 0)
                 {
-                    fatigue.lastSlept = world.currDay - 4;
+                    fatigue.lastSlept = world.time.currDay - 4;
                 }
 
                 if (randomInt(0, 5) == 0 && health.curr != Health::Dying)

@@ -105,7 +105,12 @@ void cursesPerson(World& world, Menu& currentMenu)
         box(leftWin, 0, 0);   
         box(rightWin, 0, 0);
 
-        mvwprintw(leftWin, 1, 1, "Day %d", world.currDay);
+        //mvwprintw(leftWin, 1, 1, "Day %d", world.time.currDay);
+        mvwprintw(leftWin, 1, 1, "%s %d of %s %d",
+            toString(world.time.weekDay).c_str(),
+            world.time.currDay,
+            toString(world.time.yearMonth).c_str(),
+            world.time.year);
         mvwprintw(leftWin, termHeight - 3, 1, "UP/DOWN to cycle   j/k scroll");
         mvwprintw(leftWin, termHeight - 2, 1, "p)ass time         q)uit");
      
